@@ -22,13 +22,14 @@
             CornerRadius="{Binding Thickness, Mode=TwoWay}"
             BorderBrush="Black"
             BorderThickness="0.5"
-            MouseDown="Drag">
+            MouseDown="Drag"
+            ToolTip="{Binding WindowSize}">
         <Border.Background>
             <SolidColorBrush Color="Black" Opacity="0.2"/>
         </Border.Background>
 
         <Grid>
-            <TextBlock Text="{Binding WindowSize}" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTip="{Binding WindowSize}"/>
+            <TextBlock Text="{Binding WindowSize}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </Grid>
     </Border>
 </Window>
