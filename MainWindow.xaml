@@ -19,17 +19,25 @@
     </WindowChrome.WindowChrome>
 
     <Border x:Name="Size"
-            CornerRadius="{Binding Thickness, Mode=TwoWay}"
-            BorderBrush="Black"
-            BorderThickness="0.5"
+            CornerRadius="{Binding CornerRadius, Mode=TwoWay}"
+            BorderBrush="{Binding Theme.BorderBrush, Mode=TwoWay}"
+            BorderThickness="1"
             MouseDown="Drag"
-            ToolTip="{Binding WindowSize}">
-        <Border.Background>
-            <SolidColorBrush Color="Black" Opacity="0.2"/>
-        </Border.Background>
+            ToolTip="{Binding WindowSize}"
+            Background="{Binding Theme.Background, Mode=TwoWay}">
 
-        <Grid>
-            <TextBlock Text="{Binding WindowSize}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Border.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="Switch Theme" Click="SwitchTheme"/>
+                <MenuItem Header="Close" Click="Close"/>
+            </ContextMenu>
+        </Border.ContextMenu>
+
+        <Grid IsHitTestVisible="False">
+            <TextBlock Text="{Binding WindowSize}"
+                       VerticalAlignment="Center" HorizontalAlignment="Center"
+                       Foreground="{Binding Theme.Foreground, Mode=TwoWay}"
+                       FontWeight="DemiBold"/>
         </Grid>
     </Border>
 </Window>

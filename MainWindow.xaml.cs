@@ -2,14 +2,35 @@
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Form
 {
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        private double _windowHeight = 200;
+        private double _windowWidth = 200;
+        private CornerRadius _cornerRadius = new(0);
+        private bool _isInDarkMode = true;
+        private Theme _theme = Dark;
+
+        private static readonly Theme Light = new()
+        {
+            Background = new SolidColorBrush(Colors.White) { Opacity = .2 },
+            BorderBrush = new SolidColorBrush(Colors.Orange) { Opacity = .6 },
+            Foreground = new SolidColorBrush(Colors.DarkOrange),
+        };
+
+        private static readonly Theme Dark = new()
+        {
+            Background = new SolidColorBrush(Colors.Black) { Opacity = .1 },
+            BorderBrush = new SolidColorBrush(Colors.DodgerBlue) { Opacity = .6 },
+            Foreground = new SolidColorBrush(Colors.WhiteSmoke),
+        };
+
+
         public MainWindow() => InitializeComponent();
 
-        private double _windowHeight = 200;
         public double WindowHeight
         {
             get => _windowHeight;
@@ -20,7 +41,6 @@ namespace Form
             }
         }
 
-        private double _windowWidth = 200;
         public double WindowWidth
         {
             get => _windowWidth;
@@ -31,11 +51,10 @@ namespace Form
             }
         }
 
-        private Thickness _thickness = new Thickness(0,0,0,0);
-        public Thickness Thickness { get => _thickness; set => Set(ref _thickness, value); }
-
+        public Theme Theme { get => _theme; set => Set(ref _theme, value); } 
+        public CornerRadius CornerRadius { get => _cornerRadius; set => Set(ref _cornerRadius, value); }
         public string WindowSize => $"{WindowHeight:####} x {WindowWidth:####}";
-
+        
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void RaisePropertyChanged([CallerMemberName] string propertyName = null)
@@ -53,7 +72,28 @@ namespace Form
 
         private void Drag(object sender, MouseButtonEventArgs e)
         {
-            DragMove();
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
         }
+
+        private void SwitchTheme(object sender, RoutedEventArgs e)
+        {
+            Theme = _isInDarkMode ? Light : Dark;
+            _isInDarkMode = !_isInDarkMode;
+        }
+
+        private void Close(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+    }
+
+    public class Theme
+    {
+        public Brush Background { get; init; }
+        public Brush BorderBrush { get; init; }
+        public Brush Foreground { get; init; }
     }
 }
