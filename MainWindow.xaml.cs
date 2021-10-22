@@ -88,6 +88,14 @@ namespace Form
         {
             Close();
         }
+
+        private void ControlPanel_Click(object sender, RoutedEventArgs e)
+        {
+            var panel = new InfoPanel();
+            panel.MainWindow = this;
+            panel.Owner = this;
+            panel.Show();
+        }
     }
 
     public class Theme

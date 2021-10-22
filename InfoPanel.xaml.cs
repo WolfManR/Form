@@ -1,27 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Form
 {
-    /// <summary>
-    /// Interaction logic for InfoPanel.xaml
-    /// </summary>
     public partial class InfoPanel : Window
     {
         public InfoPanel()
         {
             InitializeComponent();
         }
+
+        public MainWindow MainWindow { get; set; }
+
+        public ObservableCollection<IconData> Icons { get; set; } = new();
+
+        private void AddIcon_Click(object sender, RoutedEventArgs e)
+        {
+            Icons.Add(new(IconGeometryBox.Text, IconNameBox.Text));
+        }
+
+        private void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            IconGeometryBox.Text = null;
+            IconNameBox.Text = null;
+        }
     }
+
+    public record IconData(string Geometry, string Name);
 }

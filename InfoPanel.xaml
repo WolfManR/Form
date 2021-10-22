@@ -4,9 +4,80 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Form"
-        mc:Ignorable="d"
-        Title="InfoPanel" SizeToContent="WidthAndHeight">
-    <Grid Width="200">
-        
-    </Grid>
+        mc:Ignorable="d" MaxWidth="600"
+        Title="InfoPanel" SizeToContent="WidthAndHeight" DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="80" />
+        </Style>
+    </Window.Resources>
+    
+    <StackPanel MinWidth="200" MinHeight="200">
+        <TextBlock Text="Window Size"/>
+        <TextBlock Text="{Binding MainWindow.WindowSize}"/>
+
+        <GroupBox Header="Icon Edit">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                
+                <StackPanel>
+                    <TextBlock Text="Name"/>
+                    <TextBox x:Name="IconNameBox" MaxLines="1" Width="140" HorizontalAlignment="Left"/>
+                    <TextBlock Text="Geometry" Margin="0,14,0,0"/>
+                    <TextBox x:Name="IconGeometryBox" MinWidth="260" MaxLines="6" HorizontalScrollBarVisibility="Disabled" TextWrapping="Wrap" HorizontalAlignment="Left" />
+
+                    <GroupBox Header="Path style">
+                        <StackPanel>
+                            <RadioButton x:Name="StrokeRadio" Content="Stroke Rounded"/>
+                            <RadioButton x:Name="ShapeRadio" Content="Shape"/>
+                        </StackPanel>
+                    </GroupBox>
+                    
+                    <StackPanel Orientation="Horizontal" Margin="0,20,0,0" HorizontalAlignment="Left" Height="32">
+                        <Button Content="Add" Click="AddIcon_Click"/>
+                        <Button Content="Clear" Click="Clear_Click"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <Viewbox Grid.Column="1">
+                    <Path Data="{Binding ElementName=IconGeometryBox,Path=Text}">
+                        <Path.Style>
+                            <Style TargetType="{x:Type Path}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=StrokeRadio, Path=IsChecked}" Value="True">
+                                        <Setter Property="Stroke" Value="Black"/>
+                                        <Setter Property="StrokeLineJoin" Value="Round" />
+                                        <Setter Property="StrokeStartLineCap" Value="Round" />
+                                        <Setter Property="StrokeEndLineCap" Value="Round" />
+                                    </DataTrigger>
+
+                                    <DataTrigger Binding="{Binding ElementName=ShapeRadio, Path=IsChecked}" Value="True">
+                                        <Setter Property="Fill" Value="Black"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Path.Style>
+                    </Path>
+                </Viewbox>
+            </Grid>
+        </GroupBox>
+        <ListView ItemsSource="{Binding Icons}" MinHeight="80">
+            <ListView.ItemTemplate>
+                <DataTemplate DataType="{x:Type local:IconData}">
+                    <StackPanel Orientation="Horizontal">
+                        <Border Height="60" Width="60" BorderBrush="DarkGray" BorderThickness="1">
+                            <Path Data="{Binding Geometry}" VerticalAlignment="Center" HorizontalAlignment="Center" Fill="Black"/>
+                        </Border>
+                        
+                        <TextBlock Text="Icon name" Margin="20,0,10,0"/>
+                        <TextBlock Text="{Binding Name}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </StackPanel>
 </Window>

@@ -29,6 +29,7 @@
         <Border.ContextMenu>
             <ContextMenu>
                 <MenuItem Header="Switch Theme" Click="SwitchTheme"/>
+                <MenuItem Header="Control window" Click="ControlPanel_Click"/>
                 <MenuItem Header="Close" Click="Close"/>
             </ContextMenu>
         </Border.ContextMenu>
