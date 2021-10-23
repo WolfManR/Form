@@ -4,11 +4,17 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Form.Views.Configurations"
+      xmlns:tools="clr-namespace:Form.ViewModels.Tools"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="SizePanelConfiguration">
+      d:DesignHeight="{StaticResource SettingsHeight}" d:DesignWidth="{StaticResource SettingsWidth}"
+      d:DataContext="{d:DesignInstance tools:SizePanelVM}">
 
-    <Grid>
-        
-    </Grid>
+    <StackPanel>
+        <TextBlock Text="Window Size"/>
+        <TextBlock Text="{Binding WindowSize}"/>
+
+        <Button Content="Open Tool" Command="{Binding}"/>
+        <Button Content="Close Tool" Command="{Binding}"/>
+        <Button Content="Switch Tool Theme" Command="{Binding SwitchThemeCommand}"/>
+    </StackPanel>
 </Page>
