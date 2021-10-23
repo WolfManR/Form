@@ -8,7 +8,18 @@
              mc:Ignorable="d" 
              d:DesignHeight="{StaticResource SettingsHeight}" d:DesignWidth="{StaticResource SettingsWidth}"
              d:DataContext="{d:DesignInstance tools:GuidGeneratorVM}">
-    <Grid>
-            
-    </Grid>
+    <StackPanel>
+        <TextBlock Text="Guid"/>
+
+        <TextBlock Text="{Binding GeneratedGuid}" Background="WhiteSmoke" HorizontalAlignment="Left" MinWidth="300">
+            <TextBlock.InputBindings>
+                <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding CopyGeneratedGuidToClipboardCommand}"/>
+            </TextBlock.InputBindings>
+        </TextBlock>
+
+        <CheckBox Content="Auto copy" IsChecked="{Binding IsAutoCopyToClipboard}"/>
+        <CheckBox Content="To Upper" IsChecked="{Binding IsGenerateGuidInUpperCase}"/>
+
+        <Button Content="Generate" HorizontalAlignment="Left" Command="{Binding GenerateCommand}"/>
+    </StackPanel>
 </UserControl>
