@@ -13,8 +13,8 @@
         <TextBlock Text="Window Size"/>
         <TextBlock Text="{Binding WindowSize}"/>
 
-        <Button Content="Open Tool" Command="{Binding}"/>
-        <Button Content="Close Tool" Command="{Binding}"/>
+        <Button Content="Open Tool" Command="{Binding OpenSizePanelCommand}"/>
+        <Button Content="Close Tool" Command="{Binding CloseSizePanelCommand}"/>
         <Button Content="Switch Tool Theme" Command="{Binding SwitchThemeCommand}"/>
     </StackPanel>
 </UserControl>
