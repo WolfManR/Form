@@ -4,9 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Form.Views"
+        xmlns:configurations="clr-namespace:Form.Views.Configurations"
+        xmlns:tools="clr-namespace:Form.Views.Tools"
+        xmlns:viewModels="clr-namespace:Form.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Height="{StaticResource MainWindowHeight}" Width="{StaticResource MainWindowWidth}"
+        d:DataContext="{d:DesignInstance viewModels:MainVM}">
+    <TabControl TabStripPlacement="Left">
+        <TabItem Header="Size Panel">
+            <configurations:SizePanelConfiguration DataContext="{Binding SizePanelVM}"/>
+        </TabItem>
+        <TabItem Header="Icon Paint">
+            <tools:IconPaint DataContext="{Binding IconPaintVM}"/>
+        </TabItem>
+    </TabControl>
 </Window>
