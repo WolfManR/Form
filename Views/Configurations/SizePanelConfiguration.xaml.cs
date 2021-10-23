@@ -2,7 +2,7 @@
 
 namespace Form.Views.Configurations
 {
-    public partial class SizePanelConfiguration : Page
+    public partial class SizePanelConfiguration : UserControl
     {
         public SizePanelConfiguration() => InitializeComponent();
     }
