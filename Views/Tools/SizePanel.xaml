@@ -4,9 +4,41 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Form.Views.Tools"
+        xmlns:tools="clr-namespace:Form.ViewModels.Tools"
         mc:Ignorable="d"
-        Title="SizePanel" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Form" WindowStyle="None" AllowsTransparency="True" Background="Transparent" Topmost="True"
+        d:DataContext="{d:DesignInstance tools:SizePanelVM}"
+        Height="{Binding WindowHeight, Mode=TwoWay}"
+        Width="{Binding WindowWidth, Mode=TwoWay}">
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="30"
+                      CornerRadius="0"
+                      GlassFrameThickness="0"
+                      NonClientFrameEdges="None"
+                      ResizeBorderThickness="4"
+                      UseAeroCaptionButtons="False"/>
+    </WindowChrome.WindowChrome>
+
+    <Border x:Name="Size"
+            CornerRadius="{Binding CornerRadius, Mode=TwoWay}"
+            BorderBrush="{Binding Theme.BorderBrush, Mode=TwoWay}"
+            BorderThickness="1"
+            MouseDown="Drag"
+            ToolTip="{Binding WindowSize}"
+            Background="{Binding Theme.Background, Mode=TwoWay}">
+
+        <Border.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="Switch Theme" Command="{Binding SwitchThemeCommand}"/>
+            </ContextMenu>
+        </Border.ContextMenu>
+
+        <Grid IsHitTestVisible="False">
+            <TextBlock Text="{Binding WindowSize}"
+                       VerticalAlignment="Center" HorizontalAlignment="Center"
+                       Foreground="{Binding Theme.Foreground, Mode=TwoWay}"
+                       FontWeight="DemiBold"/>
+        </Grid>
+    </Border>
 </Window>

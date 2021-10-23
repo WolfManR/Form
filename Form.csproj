@@ -10,8 +10,4 @@
     <PackageReference Include="Thundire.MVVM.WPF" Version="0.0.2.3" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
-
 </Project>
