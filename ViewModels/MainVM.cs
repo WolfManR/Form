@@ -9,9 +9,11 @@ namespace Form.ViewModels
         {
             SizePanelVM = new();
             IconPaintVM = new();
+            GuidGeneratorVM = new();
         }
 
         public SizePanelVM SizePanelVM { get; }
         public IconPaintVM IconPaintVM { get; }
+        public GuidGeneratorVM GuidGeneratorVM { get; }
     }
 }

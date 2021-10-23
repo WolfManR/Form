@@ -17,5 +17,8 @@
         <TabItem Header="Icon Paint">
             <tools:IconPaint DataContext="{Binding IconPaintVM}"/>
         </TabItem>
+        <TabItem Header="Guid Generator">
+            <tools:GuidGenerator DataContext="{Binding GuidGeneratorVM}"/>
+        </TabItem>
     </TabControl>
 </Window>
