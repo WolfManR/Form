@@ -37,7 +37,7 @@
         </StackPanel>
 
         <Viewbox Grid.Row="0" Grid.Column="1">
-            <Path Data="{Binding ElementName=IconGeometryBox,Path=Text}">
+            <Path Data="{Binding IconGeometry}">
                 <Path.Style>
                     <Style TargetType="{x:Type Path}">
                         <Style.Triggers>

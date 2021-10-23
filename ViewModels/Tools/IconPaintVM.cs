@@ -16,6 +16,7 @@ namespace Form.ViewModels.Tools
         public IconPaintVM()
         {
             Icons = new();
+            _iconGeometry = string.Empty;
 
             AddIconCommand = new RelayCommand(AddIconToList, () => !new[] { _iconGeometry, _iconName }.IsNotFilled());
             ClearFormCommand = new RelayCommand(ClearForm, () => !_iconGeometry.IsNotFilled() || !_iconName.IsNotFilled());
